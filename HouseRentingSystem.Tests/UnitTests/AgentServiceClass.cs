@@ -68,7 +68,7 @@ namespace HouseRentingSystem.Tests.UnitTests
             var newAgentInDb = this.data.Agents.Find(newAgentId);
             Assert.IsNotNull(newAgentInDb);
             Assert.AreEqual(this.Agent.UserId, newAgentInDb.UserId);
-            Assert.AreEqual(this.Agent.PhoneNumber, newAgentInDb.PhoneNumber);
+            Assert.AreEqual(this.Agent.PhoneNumber,);
         }
     }
 }
