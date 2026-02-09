@@ -1,17 +1,34 @@
-pipeline {
+pipeline{
     agent any
 
-    stages {
-        stage("Build dotnet project") {
-            steps {
-                bat "dotnet build"
+    stages{
+        stage("Restore dependencies"){
+            steps{
+                bat 'dotnet restore'
+            }
+            post{
+                failure{
+                    echo "Step failed"
+                }
             }
         }
 
-        stage("Test dotnet project") {
-            steps {
-                bat "dotnet test"
+        stage("Build solution"){
+            steps{
+                bat 'dotnet build'
             }
+        }
+
+        stage("Run tests"){
+            steps{
+                bat 'dotnet test'
+            }
+        }
+    }
+
+    post{
+        always{
+            echo "Workflow completed successfully"
         }
     }
 }
